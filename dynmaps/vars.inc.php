@@ -1,3 +1,3 @@
 <?php
-require_once('../../../web/inc/vars.inc.php');
+require_once('../web/inc/vars.inc.php');
 ?>
