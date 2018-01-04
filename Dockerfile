@@ -62,6 +62,8 @@ RUN apk add -U --no-cache libxml2-dev \
 
 COPY ./docker-entrypoint.sh /
 
+RUN chmod +x /docker-entrypoint.sh
+
 COPY dynmaps /dynmaps
 COPY web /web
 
