@@ -966,10 +966,10 @@ function get_logs($container, $lines = false) {
     $curl = curl_init();
     if (!is_numeric($lines)) {
       list ($from, $to) = explode('-', $lines);
-      curl_setopt($curl, CURLOPT_URL,"http://rspamd-mailcow:11334/history?from=" . intval($from) . "&to=" . intval($to));
+      curl_setopt($curl, CURLOPT_URL,"http://rspamd:11334/history?from=" . intval($from) . "&to=" . intval($to));
     }
     else {
-      curl_setopt($curl, CURLOPT_URL,"http://rspamd-mailcow:11334/history?to=" . intval($lines));
+      curl_setopt($curl, CURLOPT_URL,"http://rspamd:11334/history?to=" . intval($lines));
     }
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     $history = curl_exec($curl);

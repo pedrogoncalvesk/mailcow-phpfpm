@@ -2416,7 +2416,7 @@ function mailbox($_action, $_type, $_data = null, $attr = null) {
             'cmd' => 'sieve_list',
             'username' => $_data
           );
-          $filters = json_decode(docker('dovecot-mailcow', 'post', 'exec', $exec_fields), true);
+          $filters = json_decode(docker('dovecot', 'post', 'exec', $exec_fields), true);
           $filters = array_filter(explode(PHP_EOL, $filters));
           foreach ($filters as $filter) {
             if (preg_match('/.+ ACTIVE/i', $filter)) {
@@ -2425,7 +2425,7 @@ function mailbox($_action, $_type, $_data = null, $attr = null) {
                 'script_name' => substr($filter, 0, -7),
                 'username' => $_data
               );
-              $filters = json_decode(docker('dovecot-mailcow', 'post', 'exec', $exec_fields), true);
+              $filters = json_decode(docker('dovecot', 'post', 'exec', $exec_fields), true);
               return preg_replace('/^.+\n/', '', $filters);
             }
           }

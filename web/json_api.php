@@ -529,7 +529,7 @@ if (isset($_SESSION['mailcow_cc_role']) || isset($_SESSION['pending_mailcow_cc_u
           case "rspamd":
             switch ($object) {
               case "stat":
-                $data = file_get_contents('http://rspamd-mailcow:11334/stat');
+                $data = file_get_contents('http://rspamd:11334/stat');
                 if (!empty($data)) {
                   echo $data;
                 }
@@ -540,7 +540,7 @@ if (isset($_SESSION['mailcow_cc_role']) || isset($_SESSION['pending_mailcow_cc_u
               case "graph":
                 switch ($extra) {
                   case "hourly":
-                    $data = file_get_contents('http://rspamd-mailcow:11334/graph?type=hourly');
+                    $data = file_get_contents('http://rspamd:11334/graph?type=hourly');
                     if (!empty($data)) {
                       $data_array = json_decode($data, true);
                       $rejected['label'] = "reject";
@@ -575,7 +575,7 @@ if (isset($_SESSION['mailcow_cc_role']) || isset($_SESSION['pending_mailcow_cc_u
                     }
                   break;
                   case "daily":
-                    $data = file_get_contents('http://rspamd-mailcow:11334/graph?type=daily');
+                    $data = file_get_contents('http://rspamd:11334/graph?type=daily');
                     if (!empty($data)) {
                       $data_array = json_decode($data, true);
                       $rejected['label'] = "reject";
@@ -610,7 +610,7 @@ if (isset($_SESSION['mailcow_cc_role']) || isset($_SESSION['pending_mailcow_cc_u
                     }
                   break;
                   case "weekly":
-                    $data = file_get_contents('http://rspamd-mailcow:11334/graph?type=weekly');
+                    $data = file_get_contents('http://rspamd:11334/graph?type=weekly');
                     if (!empty($data)) {
                       $data_array = json_decode($data, true);
                       $rejected['label'] = "reject";
@@ -645,7 +645,7 @@ if (isset($_SESSION['mailcow_cc_role']) || isset($_SESSION['pending_mailcow_cc_u
                     }
                   break;
                   case "monthly":
-                    $data = file_get_contents('http://rspamd-mailcow:11334/graph?type=monthly');
+                    $data = file_get_contents('http://rspamd:11334/graph?type=monthly');
                     if (!empty($data)) {
                       $data_array = json_decode($data, true);
                       $rejected['label'] = "reject";

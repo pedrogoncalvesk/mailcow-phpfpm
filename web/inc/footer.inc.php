@@ -193,7 +193,29 @@ $(document).ready(function() {
           },
           success: function(data) {
             $('#statusTriggerRestartSogo').append(data);
-            $('#triggerRestartSogo').html('<span class="glyphicon glyphicon-ok"></span> ');
+            $('#statusTriggerRestartSogo').append('<br>Restarting nginx server, this may take a while... ');
+            $.ajax({
+              method: 'get',
+              url: '/inc/ajax/sogo_ctrl.php',
+              data: {
+                'ajax': true,
+                'ACTION': 'restart-nginx'
+              },
+              timeout: 5000,
+              success: function(data) {
+                $('#statusTriggerRestartSogo').append(data);
+                $('#triggerRestartSogo').html('<span class="glyphicon glyphicon-ok"></span> ');
+              },
+              complete: function (jqXHR, textStatus) {
+                if (textStatus === "timeout" || textStatus === "error") {
+                  $('#statusTriggerRestartSogo').append('<b><span class="pull-right text-success">OK</span></b><br>Window will reload in 5s...');
+                  $('#triggerRestartSogo').html('<span class="glyphicon glyphicon-ok"></span> ');
+                }
+                setTimeout(function () {
+                  location.reload()
+                }, 5 * 1000);
+              }
+            })
           }
         });
       }
