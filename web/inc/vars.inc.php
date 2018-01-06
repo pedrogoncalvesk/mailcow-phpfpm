@@ -26,6 +26,11 @@ if ($https_port === FALSE) {
 } else {
   $https_port = substr($_SERVER['HTTP_HOST'], $https_port+1);
 }
+
+$activesync_host = $mailcow_hostname;
+if ($https_port != 443) {
+  $activesync_host .= ':' . $https_port;
+}
 // Alternatively select port here =>
 //$https_port = 1234;
 // Other settings =>
@@ -55,7 +60,7 @@ $autodiscover_config = array(
     'tlsport' => array_pop(explode(':', getenv('SUBMISSION_PORT'))),
   ),
   'activesync' => array(
-    'url' => 'https://'.$mailcow_hostname.($https_port == 443 ? '' : ':'.$https_port).'/Microsoft-Server-ActiveSync',
+    'url' => "https://$activesync_host/Microsoft-Server-ActiveSync",
   ),
   'caldav' => array(
     'server' => $mailcow_hostname,
