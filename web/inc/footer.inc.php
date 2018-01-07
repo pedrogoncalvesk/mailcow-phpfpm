@@ -208,12 +208,12 @@ $(document).ready(function() {
               },
               complete: function (jqXHR, textStatus) {
                 if (textStatus === "timeout" || textStatus === "error") {
-                  $('#statusTriggerRestartSogo').append('<b><span class="pull-right text-success">OK</span></b><br>Window will reload in 5s...');
+                  $('#statusTriggerRestartSogo').append('<b><span class="pull-right text-success">OK</span></b><br>Window will reload in 20s...');
                   $('#triggerRestartSogo').html('<span class="glyphicon glyphicon-ok"></span> ');
                 }
                 setTimeout(function () {
                   location.reload()
-                }, 5 * 1000);
+                }, 20 * 1000);
               }
             })
           }
